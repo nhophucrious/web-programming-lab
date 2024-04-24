@@ -2,6 +2,7 @@
 <?php
     session_start();
     $isLoggedIn = isset($_SESSION['username']);
+    $level = isset($_SESSION['level']) ? $_SESSION['level'] : 1; // default level is 1, admin is 0
     // get the current URI for highlighting the active link
     $uri = $_SERVER['REQUEST_URI'];
 ?>
@@ -86,6 +87,11 @@
                     <li class="nav-item">
                         <span class="nav-link"><?= $_SESSION['username'] ?></span>
                     </li>
+                    <?php if ($level == 0): ?>
+                        <li class="nav-item <?= $uri === '/web-programming-lab/admin' ? 'active' : '' ?>">
+                            <a class="nav-link" href="/web-programming-lab/admin">Admin</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="/web-programming-lab/signout">Sign Out</a>
                     </li>

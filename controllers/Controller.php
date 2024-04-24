@@ -10,6 +10,10 @@ class Controller {
         $this->showAboutPage();
     }
 
+    public function admin() {
+        $this->showAdminPage();
+    }
+
     public function signup() {
         $this->showSignupPage();
     }
@@ -29,6 +33,10 @@ class Controller {
     private function showAboutPage() {
         include 'views/about.php';
     }
+    
+    private function showAdminPage() {
+        include 'views/admin.php';
+    }
 
     private function showSignupPage() {
         include 'views/signup.php';
@@ -41,6 +49,7 @@ class Controller {
     public function showPageNotFound() {
         include 'views/error.php';
     }
+    
 
     private function showError($title, $message) {
         include 'views/error.php';

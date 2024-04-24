@@ -15,6 +15,7 @@
             // Start the session and store the username
             session_start();
             $_SESSION['username'] = $username;
+            $_SESSION['level'] = $user['lvl'];
 
             // Redirect to the home page
             header('Location: /web-programming-lab/');
