@@ -6,8 +6,12 @@ class Controller {
         $this->showHomePage();
     }
 
-    public function about() {
-        $this->showAboutPage();
+    public function course_paginate() {
+        $this->showCoursePaginate();
+    }
+
+    public function course_lazy() {
+        $this->showCourseLazy();
     }
 
     public function admin() {
@@ -30,8 +34,12 @@ class Controller {
         include 'views/home.php';
     }
 
-    private function showAboutPage() {
-        include 'views/about.php';
+    private function showCoursePaginate() {
+        include 'views/course_pagination.php';
+    }
+
+    private function showCourseLazy() {
+        include 'views/course_lazy.php';
     }
     
     private function showAdminPage() {

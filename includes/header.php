@@ -80,8 +80,11 @@
                 <li class="nav-item <?= $uri === '/web-programming-lab/' ? 'active' : '' ?>">
                     <a class="nav-link" href="/web-programming-lab/">Home</a>
                 </li>
-                <li class="nav-item <?= $uri === '/web-programming-lab/courses' ? 'active' : '' ?>">
-                    <a class="nav-link" href="/web-programming-lab/courses">Courses</a>
+                <li class="nav-item <?= $uri === '/web-programming-lab/course-paginate' ? 'active' : '' ?>">
+                    <a class="nav-link" href="/web-programming-lab/course-paginate">Courses (pagination)</a>
+                </li>
+                <li class="nav-item <?= $uri === '/web-programming-lab/course-lazy' ? 'active' : '' ?>">
+                    <a class="nav-link" href="/web-programming-lab/course-lazy">Courses (lazy loading)</a>
                 </li>
                 <?php if ($isLoggedIn): ?>
                     <li class="nav-item">

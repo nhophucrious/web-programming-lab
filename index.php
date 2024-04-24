@@ -21,8 +21,11 @@ switch ($request) {
     case '/index' :
         $controller->home();
         break;
-    case '/about' :
-        $controller->about();
+    case '/course-paginate' :
+        $controller->course_paginate();
+        break;
+    case '/course-lazy' :
+        $controller->course_lazy();
         break;
     case '/admin' :
         $controller->admin();
