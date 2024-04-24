@@ -9,7 +9,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HackCMUT</title>
+    <?php
+        // determine the page title based on the current URI
+        $pageTitle = 'HackCMUT';
+        if ($uri === '/web-programming-lab/') {
+            $pageTitle .= ' | Home';
+        } elseif ($uri === '/web-programming-lab/products') {
+            $pageTitle .= ' | Products';
+        } elseif ($uri === '/web-programming-lab/signup') {
+            $pageTitle .= ' | Sign Up';
+        } elseif ($uri === '/web-programming-lab/signin') {
+            $pageTitle .= ' | Sign In';
+        } else {
+            $pageTitle .= ' | Page Not Found';
+        }
+    ?>
+    <title><?php echo $pageTitle; ?></title>
     <link rel="stylesheet" href="/web-programming-lab/static/css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,15 +79,15 @@
                 <li class="nav-item <?= $uri === '/web-programming-lab/' ? 'active' : '' ?>">
                     <a class="nav-link" href="/web-programming-lab/">Home</a>
                 </li>
-                <li class="nav-item <?= $uri === '/web-programming-lab/products' ? 'active' : '' ?>">
-                    <a class="nav-link" href="/web-programming-lab/products">Products</a>
+                <li class="nav-item <?= $uri === '/web-programming-lab/courses' ? 'active' : '' ?>">
+                    <a class="nav-link" href="/web-programming-lab/courses">Courses</a>
                 </li>
                 <?php if ($isLoggedIn): ?>
                     <li class="nav-item">
                         <span class="nav-link"><?= $_SESSION['username'] ?></span>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/web-programming-lab/logout">Log Out</a>
+                        <a class="nav-link" href="/web-programming-lab/signout">Sign Out</a>
                     </li>
                 <?php else: ?>
                     <li class="nav-item <?= $uri === '/web-programming-lab/signup' ? 'active' : '' ?>">

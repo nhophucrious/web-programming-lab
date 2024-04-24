@@ -11,7 +11,6 @@
     }
 ?>
 
-
 <div class="container p-5" style="min-height: 100vh;">
     <div class="column align-items-center">
         <h3 style="font-weight: bold;">Welcome to HackCMUT!</h3>

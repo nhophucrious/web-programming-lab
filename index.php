@@ -30,6 +30,9 @@ switch ($request) {
     case '/signin' :
         $controller->signin();
         break;
+    case '/signout' :
+        $userController = new UserController();
+        $userController->signout();
     default:
         // http_response_code(404);
         // echo "Page not found";

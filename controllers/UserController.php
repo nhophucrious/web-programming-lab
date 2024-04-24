@@ -57,6 +57,17 @@ class UserController {
         }
     }
 
+    public function signout() {
+        // destroy the session
+        session_start();
+        unset($_SESSION['username']);
+        session_destroy();
+    
+        // redirect to the sign-in page
+        header('Location: signin');
+    
+    }
+
     public function doesUserExist($username) {
         $user = $this->model->getUser($username);
         return $user !== false && !empty($user);
