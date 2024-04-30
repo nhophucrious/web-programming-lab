@@ -15,12 +15,16 @@
         $pageTitle = 'HackCMUT';
         if ($uri === '/web-programming-lab/') {
             $pageTitle .= ' | Home';
-        } elseif ($uri === '/web-programming-lab/products') {
-            $pageTitle .= ' | Products';
         } elseif ($uri === '/web-programming-lab/signup') {
             $pageTitle .= ' | Sign Up';
         } elseif ($uri === '/web-programming-lab/signin') {
             $pageTitle .= ' | Sign In';
+        } elseif ($uri === '/web-programming-lab/course-paginate') {
+            $pageTitle .= ' | Courses';
+        } elseif ($uri === '/web-programming-lab/course-lazy') {
+            $pageTitle .= ' | Courses';
+        } elseif ($uri === '/web-programming-lab/admin') {
+            $pageTitle .= ' | Admin';
         } else {
             $pageTitle .= ' | Page Not Found';
         }
