@@ -20,5 +20,16 @@ class Course {
         // Execute the statement
         $stmt->execute();
     }
+
+    public function getAllCourses() {
+        // Prepare an SQL statement
+        $stmt = $this->pdo->prepare("SELECT * FROM courses");
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch all courses
+        return $stmt->fetchAll();
+    }
 }
 ?>

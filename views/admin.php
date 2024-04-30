@@ -1,10 +1,15 @@
 <?php
 require_once 'includes/header.php';
+require_once 'includes/Database.php';
+require_once 'controllers/CourseController.php';
 // Check if the user is logged in and is an admin
 if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
     header('Location: /web-programming-lab/');
     exit;
 }
+
+$db = new Database();
+$controller = new CourseController($db->pdo);
 ?>
 
 <div class="container p-2" style="min-height: 100vh">
@@ -19,7 +24,7 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
             <li><a data-toggle="tab" href="#manage-course">Manage course</a></li>
         </ul>
 
-        <div class="tab-content">
+        <div class="tab-content pt-2">
             <div id="add-course" class="tab-pane fade in active">
                 <h3>Add course</h3>
                 <form id="add-course-form">
@@ -42,7 +47,37 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
             </div>
             <div id="manage-course" class="tab-pane fade">
                 <h3>Manage courses</h3>
-                <p>Some content.</p>
+                <!-- table showing all course, with action button to delete or edit. edit via modal -->
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Description</th>
+                            <th>Course Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Fetch all courses from the database
+                        $courses = $controller->getAllCourses();
+
+                        // Loop through the courses and create a table row for each one
+                        foreach ($courses as $course) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($course['course_name']) . "</td>";
+                            echo "<td>" . htmlspecialchars($course['description']) . "</td>";
+                            echo "<td>" . htmlspecialchars($course['course_price']) . "</td>";
+                            echo "<td>";
+                            echo "<button class='btn btn-primary edit-button' data-id='" . htmlspecialchars($course['id']) . "'>Edit</button>";
+                            echo "<button class='btn btn-danger delete-button' data-id='" . htmlspecialchars($course['id']) . "'>Delete</button>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                
             </div>
         </div>
     </div>

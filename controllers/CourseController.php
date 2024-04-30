@@ -1,5 +1,5 @@
-// controllers/CourseController.php
 <?php
+// controllers/CourseController.php
 require_once 'models/Course.php';
 
 class CourseController {
