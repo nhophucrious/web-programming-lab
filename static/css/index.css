@@ -7,7 +7,7 @@ html, body {
 
 .hero {
     /* background-color: white; */
-    background: url("../img/hero-bg.jpg");
+    /* background: url("../img/hero-bg.jpg"); */
     background-size: cover;
     height: 100vh;
 }

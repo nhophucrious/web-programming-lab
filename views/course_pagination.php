@@ -19,7 +19,7 @@ require_once 'includes/header.php';
     <div class="row" id="courses-container">
         <!-- Courses will be loaded here -->
     </div>
-    <div id="pagination" class="mt-4 d-flex flex-horizontal">
+    <div id="pagination" class="mt-4 d-flex flex-horizontal text-center justify-content-center">
         <!-- Pagination links will be loaded here -->
     </div>
     <!-- <div class="d-flex justify-content-between mt-4">

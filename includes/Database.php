@@ -22,4 +22,10 @@ class Database {
             echo 'Connection failed: ' . $e->getMessage();
         }
     }
+
+    public function query($sql, $params = []) {
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
 }
