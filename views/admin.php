@@ -71,7 +71,39 @@ $controller = new CourseController($db->pdo);
         </div>
     </div>
 </div>
-
+<!-- Edit Course Modal -->
+<div class="modal fade" id="edit-course-modal" tabindex="-1" role="dialog" aria-labelledby="editCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCourseModalLabel">Edit Course</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-course-form">
+                    <div class="form-group">
+                        <label for="edit-courseName">Course Name:</label>
+                        <input type="text" class="form-control" id="edit-courseName" name="edit-courseName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-courseDescription">Course Description:</label>
+                        <textarea class="form-control" id="edit-courseDescription" name="edit-courseDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-coursePrice">Course Price:</label>
+                        <input type="number" class="form-control" id="edit-coursePrice" name="edit-coursePrice" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save-edit-course">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 require_once 'includes/footer.php';
@@ -140,5 +172,48 @@ $(document).ready(function() {
             loadCourses();
         }
     });
+    var courseId; // Declare courseId outside the event handlers
+
+    $(document).on('click', '.edit-button', function() {
+        courseId = $(this).data('id'); // Assign the value to the outer courseId variable
+        $.ajax({
+            url: 'get_courses.php',
+            type: 'GET',
+            data: {
+                id: courseId
+            },
+            success: function(data) {
+                var course = JSON.parse(data);
+                // courseId = course.id; // This line might not be necessary since you're already setting it above
+                $('#edit-courseName').val(course.course_name);
+                $('#edit-courseDescription').val(course.description);
+                $('#edit-coursePrice').val(course.course_price);
+                // Open the modal
+                $('#edit-course-modal').modal('show');
+            }
+        });
+    });
+
+    // Add click event listener to the save button in the edit modal
+    $('#save-edit-course').click(function() {
+        setTimeout(function() {
+            $.ajax({
+                url: 'edit_course.php',
+                type: 'POST',
+                data: {
+                    courseId: courseId,
+                    courseName: $('#edit-courseName').val(),
+                    courseDescription: $('#edit-courseDescription').val(),
+                    coursePrice: $('#edit-coursePrice').val()
+                },
+                success: function() {
+                    // Close the modal and reload the courses
+                    $('#edit-course-modal').modal('hide');
+                    loadCourses();
+                }
+            });
+        }, 100); // Delay the AJAX request by 100 milliseconds
+    });
+
 });
 </script>
