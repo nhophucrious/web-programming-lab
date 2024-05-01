@@ -215,5 +215,23 @@ $(document).ready(function() {
         }, 100); // Delay the AJAX request by 100 milliseconds
     });
 
+    // Add click event listener to the delete button
+    $(document).on('click', '.delete-button', function() {
+        var id = $(this).data('id');
+        var userConfirmation = confirm('Are you sure you want to delete this course?'); // Ask for confirmation
+        if (userConfirmation) { // If the user clicked "OK"
+            $.ajax({
+                url: 'delete_course.php',
+                type: 'POST',
+                data: {
+                    id: id
+                },
+                success: function() {
+                    loadCourses();
+                }
+            });
+        }
+    });
+
 });
 </script>
