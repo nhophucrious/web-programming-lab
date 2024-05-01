@@ -21,6 +21,21 @@ class Course {
         $stmt->execute();
     }
 
+    // get course by id
+    public function getCourseById($courseId) {
+        // Prepare an SQL statement
+        $stmt = $this->pdo->prepare("SELECT * FROM courses WHERE id = ?");
+
+        // Bind parameters
+        $stmt->bindParam(1, $courseId);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch the course
+        return $stmt->fetch();
+    }
+
     // get course by page
     public function getCoursesByPage($pageNumber, $pageSize) {
         // Calculate the offset

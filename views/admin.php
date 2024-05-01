@@ -47,9 +47,12 @@ $controller = new CourseController($db->pdo);
             </div>
             <div id="manage-course" class="tab-pane fade">
                 <h3>Manage courses</h3>
-                <!-- button to go back and forth -->
-                <button id="prev" class="btn btn-primary">Previous</button>
-                <button id="next" class="btn btn-primary">Next</button>
+                <div class="p-2">
+                    <!-- button to go back and forth -->
+                    <button id="prev" class="btn btn-primary">Previous</button>
+                    <button id="next" class="btn btn-primary">Next</button>
+                </div>
+                
                 <!-- table showing all course, with action button to delete or edit. edit via modal -->
                 <table class="table table-striped">
                     <thead>
@@ -64,9 +67,6 @@ $controller = new CourseController($db->pdo);
                         
                     </tbody>
                 </table>
-                <!-- button to go back and forth -->
-                <button id="prev" class="btn btn-primary">Previous</button>
-                <button id="next" class="btn btn-primary">Next</button>
             </div>
         </div>
     </div>
