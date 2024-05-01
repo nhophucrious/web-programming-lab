@@ -28,6 +28,15 @@
     <div class="row">
     </div>
 </div>
+
+<div class="container my-5">
+    <h2 class="text-center">Fetch text file with AJAX</h2>
+    <button class="my-button-filled" type="button" onclick="loadDoc()">Change Content</button>
+    <button class="my-button" type="button" onclick="unloadDoc()">Clear</button>
+    <div class="row" id="fetch-ajax">
+    </div>
+</div>
+
 <?php
     require_once 'includes/footer.php';
 ?>
@@ -65,4 +74,17 @@
             }
         });
     });
+</script>
+<script>
+function loadDoc() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function() {
+    document.getElementById("fetch-ajax").innerHTML = this.responseText;
+    }
+    xhttp.open("GET", "ajax.txt", true);
+    xhttp.send();
+}
+function unloadDoc() {
+    document.getElementById("fetch-ajax").innerHTML = "";
+}
 </script>
