@@ -21,6 +21,25 @@ class Course {
         $stmt->execute();
     }
 
+    // get course by page
+    public function getCoursesByPage($pageNumber, $pageSize) {
+        // Calculate the offset
+        $offset = ($pageNumber - 1) * $pageSize;
+
+        // Prepare an SQL statement
+        $stmt = $this->pdo->prepare("SELECT * FROM courses LIMIT ? OFFSET ?");
+
+        // Bind parameters
+        $stmt->bindParam(1, $pageSize, PDO::PARAM_INT);
+        $stmt->bindParam(2, $offset, PDO::PARAM_INT);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Fetch all courses
+        return $stmt->fetchAll();
+    }
+
     public function getAllCourses() {
         // Prepare an SQL statement
         $stmt = $this->pdo->prepare("SELECT * FROM courses");

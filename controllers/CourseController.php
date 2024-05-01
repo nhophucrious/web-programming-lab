@@ -13,6 +13,10 @@ class CourseController {
         return $this->courseModel->getAllCourses();
     }
 
+    public function getCoursesByPage($pageNumber, $pageSize) {
+        return $this->courseModel->getCoursesByPage($pageNumber, $pageSize);
+    }
+
     public function createCourse($courseName, $courseDescription, $coursePrice, $dateAdded) {
         $this->courseModel->createCourse($courseName, $courseDescription, $coursePrice, $dateAdded);
     }

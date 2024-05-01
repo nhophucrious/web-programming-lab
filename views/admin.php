@@ -47,6 +47,9 @@ $controller = new CourseController($db->pdo);
             </div>
             <div id="manage-course" class="tab-pane fade">
                 <h3>Manage courses</h3>
+                <!-- button to go back and forth -->
+                <button id="prev" class="btn btn-primary">Previous</button>
+                <button id="next" class="btn btn-primary">Next</button>
                 <!-- table showing all course, with action button to delete or edit. edit via modal -->
                 <table class="table table-striped">
                     <thead>
@@ -57,27 +60,13 @@ $controller = new CourseController($db->pdo);
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <?php
-                        // Fetch all courses from the database
-                        $courses = $controller->getAllCourses();
-
-                        // Loop through the courses and create a table row for each one
-                        foreach ($courses as $course) {
-                            echo "<tr>";
-                            echo "<td>" . htmlspecialchars($course['course_name']) . "</td>";
-                            echo "<td>" . htmlspecialchars($course['description']) . "</td>";
-                            echo "<td>" . htmlspecialchars($course['course_price']) . "</td>";
-                            echo "<td>";
-                            echo "<button class='btn btn-primary edit-button' data-id='" . htmlspecialchars($course['id']) . "'>Edit</button>";
-                            echo "<button class='btn btn-danger delete-button' data-id='" . htmlspecialchars($course['id']) . "'>Delete</button>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
-                        ?>
+                    <tbody id="course-table">
+                        
                     </tbody>
                 </table>
-                
+                <!-- button to go back and forth -->
+                <button id="prev" class="btn btn-primary">Previous</button>
+                <button id="next" class="btn btn-primary">Next</button>
             </div>
         </div>
     </div>
@@ -103,6 +92,53 @@ jQuery(document).ready(function(){
                 jQuery("#add-course-status").html("<div class='alert alert-danger'>There was an error adding the course.</div>");
             }
         });
+    });
+});
+</script>
+
+<script>
+$(document).ready(function() {
+    var pageNumber = 1;
+    var pageSize = 10;
+    function loadCourses() {
+        $.ajax({
+            url: 'get_courses.php',
+            type: 'GET',
+            data: {
+                page: pageNumber
+            },
+            success: function(data) {
+                var courses = JSON.parse(data);
+                // Clear the table
+                $('#course-table').empty();
+                // Loop through the courses and append a new row for each one
+                $.each(courses, function(index, course) {
+                    var row = '<tr>' +
+                        '<td>' + course.course_name + '</td>' +
+                        '<td>' + course.description + '</td>' +
+                        '<td>' + course.course_price + '</td>' +
+                        '<td>' +
+                        "<button class='btn btn-primary edit-button' data-id='" + course.id + "'>Edit</button>" +
+                        "<button class='btn btn-danger delete-button' data-id='" + course.id + "'>Delete</button>" +
+                        '</td>' +
+                        '</tr>';
+                    $('#course-table').append(row);
+                });
+            }
+        });
+    }
+    loadCourses(); // Load the first page of courses
+    // Add an event listener to the 'next' button
+    $('#next').click(function() {
+        pageNumber++;
+        loadCourses();
+    });
+    // Add an event listener to the 'previous' button
+    $('#prev').click(function() {
+        if (pageNumber > 1) {
+            pageNumber--;
+            loadCourses();
+        }
     });
 });
 </script>
