@@ -16,5 +16,13 @@ class CourseController {
     public function createCourse($courseName, $courseDescription, $coursePrice, $dateAdded) {
         $this->courseModel->createCourse($courseName, $courseDescription, $coursePrice, $dateAdded);
     }
+
+    public function editCourse($courseId, $courseName, $courseDescription, $coursePrice) {
+        $this->courseModel->editCourse($courseId, $courseName, $courseDescription, $coursePrice);
+    }
+
+    public function deleteCourse($courseId) {
+        $this->courseModel->deleteCourse($courseId);
+    }
 }
 ?>
