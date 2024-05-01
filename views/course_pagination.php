@@ -52,7 +52,7 @@ $(document).ready(function() {
                 var html = '';
                 for (var i = 0; i < courses.length; i++) {
                     html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
-                    html += '<div class="card mb-4" style="border: 1px solid #ff5722; width: 100%;">';
+                    html += '<div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">';
                     html += '<div class="card-body d-flex flex-column">';
                     html += '<h5 class="card-title">' + courses[i].course_name + '</h5>';
                     html += '<p class="card-text">' + courses[i].description + '</p>';
