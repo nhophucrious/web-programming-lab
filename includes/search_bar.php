@@ -39,8 +39,12 @@ $(document).ready(function() {
                 success: function(suggestions) {
                     // Generate the HTML for the search suggestions
                     var suggestionsHtml = '';
-                    for (var i = 0; i < suggestions.length; i++) {
-                        suggestionsHtml += '<a class="dropdown-item" href="course.php?id=' + suggestions[i].id + '">' + suggestions[i].course_name + '</a>';
+                    if (suggestions.length == 0) {
+                        suggestionsHtml = '<a class="dropdown-item">Nothing found</a>';
+                    } else {
+                        for (var i = 0; i < suggestions.length; i++) {
+                            suggestionsHtml += '<a class="dropdown-item" href="course.php?id=' + suggestions[i].id + '">' + suggestions[i].course_name + '</a>';
+                        }
                     }
                     $('#search-suggestions').html(suggestionsHtml);
                     $('#search-suggestions').show();
