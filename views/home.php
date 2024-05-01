@@ -37,6 +37,26 @@
     </div>
 </div>
 
+<div class="container my-5">
+    <h2 class="text-center">Country list drop-down selection</h2>
+    <div class=country-select>
+        <div class="country-container">
+            <select id="countries">
+                <option value="">Select a country</option>
+            </select>
+            <select id="states" style="display: none;">
+                <option value="">Select a state (or province, of course)</option>
+            </select>
+            <select id="cities" style="display: none;">
+                <option value="">Select a city</option>
+            </select>
+        </div>
+    <div id="country-panel" style="display:none">     
+    </div>
+
+    </div>
+</div>
+
 <?php
     require_once 'includes/footer.php';
 ?>
@@ -86,5 +106,81 @@ function loadDoc() {
 }
 function unloadDoc() {
     document.getElementById("fetch-ajax").innerHTML = "";
+}
+</script>
+
+<script>
+window.onload = function() {
+    const countriesSelect = document.getElementById("countries");
+    const statesSelect = document.getElementById("states");
+    const citiesSelect = document.getElementById("cities");
+    const countryPanel = document.getElementById("country-panel");
+
+    fetch("countries_states_cities.json")
+        .then((response) => response.json())
+        .then((data) => {
+            data.forEach((item) => {
+                const option = document.createElement("option");
+                option.value = item.id;
+                option.text = item.name + ' ' + item.emoji;
+                countriesSelect.appendChild(option);
+            });
+
+            countriesSelect.addEventListener('change', function() {
+                if (this.value === "") {
+                    statesSelect.style.display = 'none';
+                    citiesSelect.style.display = 'none';
+                    countryPanel.style.display = 'none';
+                } else {
+                    statesSelect.style.display = 'block';
+                    statesSelect.innerHTML = ''; // clear previous options
+                    const statePlaceholder = document.createElement("option");
+                    statePlaceholder.value = "";
+                    statePlaceholder.text = "Select a state";
+                    statesSelect.appendChild(statePlaceholder);
+                    const selectedCountry = data.find(country => country.id == this.value);
+                    selectedCountry.states.forEach((state) => {
+                        const option = document.createElement("option");
+                        option.value = state.id;
+                        option.text = state.name;
+                        statesSelect.appendChild(option);
+                    });
+                    countryPanel.style.display = 'block';
+                    countryPanel.innerHTML = `
+                        <h2>${selectedCountry.name} ${selectedCountry.emoji}</h2>
+                        <p>Capital: ${selectedCountry.capital}</p>
+                        <p>Currency: ${selectedCountry.currency} (${selectedCountry.currency_name}, ${selectedCountry.currency_symbol})</p>
+                        <p>Top Level Domain: ${selectedCountry.tld}</p>
+                        <p>Native Name: ${selectedCountry.native}</p>
+                        <p>Region: ${selectedCountry.region}</p>
+                        <p>Subregion: ${selectedCountry.subregion}</p>
+                    `;                    
+                }
+            });
+
+            statesSelect.addEventListener('change', function() {
+                if (this.value == "") {
+                    citiesSelect.style.display = 'none';
+                } else {
+
+                    citiesSelect.style.display = 'block';
+                    citiesSelect.innerHTML = ''; // clear previous options
+                    const cityPlaceholder = document.createElement("option");
+                    cityPlaceholder.value = "";
+                    cityPlaceholder.text = "Select a city";
+                    citiesSelect.appendChild(cityPlaceholder);
+                    const selectedCountry = data.find(country => country.id == countriesSelect.value);
+                    const selectedState = selectedCountry.states.find(state => state.id == this.value);
+                    selectedState.cities.forEach((city) => {
+                        const option = document.createElement("option");
+                        option.value = city.id;
+                        option.text = city.name;
+                        citiesSelect.appendChild(option);
+                    });
+                }
+                
+            });
+            })
+    .catch((error) => console.error(error));
 }
 </script>

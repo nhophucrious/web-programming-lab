@@ -119,3 +119,29 @@ html, body {
     border: 2px solid #FFBF00;
     box-sizing: border-box;
 }
+
+.country-select {
+    display: flex;
+    flex-direction: column;
+}
+
+.country-container {
+    padding: 1em 2em;
+    margin: 1em 2em;
+    display: flex;
+    flex-direction: row;
+}
+
+.country-container select {
+    font-size: 1.2em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+#country-panel {
+    padding: 1em 2em;
+    margin: 1em 5em;
+    border: 2px solid orangered;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px gray;
+}
