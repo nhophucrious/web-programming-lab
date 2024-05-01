@@ -7,9 +7,6 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
     header('Location: /web-programming-lab/');
     exit;
 }
-
-$db = new Database();
-$controller = new CourseController($db->pdo);
 ?>
 
 <div class="container p-2" style="min-height: 100vh">
