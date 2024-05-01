@@ -137,7 +137,8 @@ $(document).ready(function() {
                 page: pageNumber
             },
             success: function(data) {
-                var courses = JSON.parse(data);
+                data = JSON.parse(data);
+                var courses = data.courses;
                 // Clear the table
                 $('#course-table').empty();
                 // Loop through the courses and append a new row for each one

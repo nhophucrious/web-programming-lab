@@ -34,7 +34,8 @@ function loadCourses() {
             size: pageSize
         },
         success: function(data) {
-            var courses = JSON.parse(data);
+            data = JSON.parse(data);
+            var courses = data.courses;
             var html = '';
             for (var i = 0; i < courses.length; i++) {
                 html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
