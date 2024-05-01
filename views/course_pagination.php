@@ -3,6 +3,10 @@ require_once 'includes/header.php';
 ?>
 
 <style>
+.my-divider {
+    border-top: 1px solid black !important;
+}
+
 .active-pagination-link {
     background-color: orangered !important;
     color: white !important;
@@ -54,9 +58,14 @@ $(document).ready(function() {
                     html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
                     html += '<div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">';
                     html += '<div class="card-body d-flex flex-column">';
-                    html += '<h5 class="card-title">' + courses[i].course_name + '</h5>';
-                    html += '<p class="card-text">' + courses[i].description + '</p>';
-                    html += '<p class="card-text">Price: $' + courses[i].course_price + '</p>';
+                    html += '<h5 class="card-title" style="color: #ff5722 !important">' + courses[i].course_name + '</h5>';
+                    html += '<hr>'
+                    html += '<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">' + courses[i].description + '</p>';
+                    html += '<hr my-divider>'; // Add this line
+                    html += '<div class="mt-auto align-items-center">';
+                    html += '<p class="card-text d-inline-block mb-0">Price: $' + courses[i].course_price + '</p>';
+                    html += '<a href="details.php?id=' + courses[i].id + '" class="my-button-filled float-right">See Details</a>';
+                    html += '</div>';
                     html += '</div>';
                     html += '</div>';
                     html += '</div>';

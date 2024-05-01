@@ -9,11 +9,7 @@
 <div class="container-fluid my-2">
     <form action="" method="get">
         <div class="input-group input-group">
-            <input type="text" class="form-control rounded mr-2" placeholder="Search for courses" name="q" id="search-input">
-            <div class="input-group-append">
-                <!-- submit button in a tag and style hiredcmut-button -->
-                <button type="submit" class="my-button">Search</button>
-            </div>
+            <input type="text" class="form-control rounded m-2" placeholder="Search for courses" name="q" id="search-input" autocomplete="off">
         </div>
         <div id="search-suggestions" class="dropdown-menu" aria-labelledby="search-input">
             <!-- Search suggestions will be loaded here -->
