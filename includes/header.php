@@ -25,6 +25,8 @@
             $pageTitle .= ' | Courses';
         } elseif ($uri === '/web-programming-lab/admin') {
             $pageTitle .= ' | Admin';
+        } elseif ($uri === '/web-programming-lab/map') {
+            $pageTitle .= ' | Map';
         } else {
             $pageTitle .= ' | Page Not Found';
         }
@@ -89,6 +91,9 @@
                 </li>
                 <li class="nav-item <?= $uri === '/web-programming-lab/course-lazy' ? 'active' : '' ?>">
                     <a class="nav-link" href="/web-programming-lab/course-lazy">Courses (lazy loading)</a>
+                </li>
+                <li class="nav-item <?= $uri === '/web-programming-lab/map' ? 'active' : '' ?>">
+                    <a class="nav-link" href="/web-programming-lab/map">Map</a>
                 </li>
                 <?php if ($isLoggedIn): ?>
                     <li class="nav-item">

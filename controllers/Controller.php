@@ -14,6 +14,10 @@ class Controller {
         $this->showCourseLazy();
     }
 
+    public function map() {
+        $this->showMap();
+    }
+
     public function admin() {
         $this->showAdminPage();
     }
@@ -42,6 +46,10 @@ class Controller {
         include 'views/course_lazy.php';
     }
     
+    private function showMap() {
+        include 'views/map.php';
+    }
+
     private function showAdminPage() {
         include 'views/admin.php';
     }

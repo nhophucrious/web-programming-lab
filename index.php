@@ -27,6 +27,9 @@ switch ($request) {
     case '/course-lazy' :
         $controller->course_lazy();
         break;
+    case '/map' :
+        $controller->map();
+        break;
     case '/admin' :
         $controller->admin();
         break;
