@@ -23,14 +23,18 @@ def generate_course():
     description = fake.text()
     date_added = fake.date_between(start_date='-1y', end_date='today')
 
-    return (course_name, course_price, description, date_added)
+    # image
+    image_id = fake.random_int(min=1, max=1084)
+    url = "https://picsum.photos/id/" + str(image_id) + "/200/200"
+
+    return (course_name, course_price, description, url, date_added)
 
 # generate 200 courses
-for _ in range(200):
+for _ in range(10):
     course = generate_course()
     add_course = ("INSERT INTO courses "
-                  "(course_name, course_price, description, date_added) "
-                  "VALUES (%s, %s, %s, %s)")
+                  "(course_name, course_price, description, url, date_added) "
+                  "VALUES (%s, %s, %s, %s, %s)")
     cursor.execute(add_course, course)
 
 # commit the changes

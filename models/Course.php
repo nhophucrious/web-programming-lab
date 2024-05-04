@@ -41,7 +41,7 @@ class Course {
     public function getCoursesByPage($pageNumber, $pageSize) {
         $offset = ($pageNumber - 1) * $pageSize;
     
-        $stmt = $this->pdo->prepare("SELECT * FROM courses LIMIT ? OFFSET ?");
+        $stmt = $this->pdo->prepare("SELECT * FROM courses ORDER BY date_added DESC LIMIT ? OFFSET ?");
         $stmt->bindParam(1, $pageSize, PDO::PARAM_INT);
         $stmt->bindParam(2, $offset, PDO::PARAM_INT);
         $stmt->execute();

@@ -64,6 +64,7 @@ $(document).ready(function() {
                                 <div class="card-body d-flex flex-column">
                                     <h5 class="card-title" style="color: #ff5722 !important">${courses[i].course_name}</h5>
                                     <hr>
+                                    <img src="${courses[i].url}" class="card-img-top" alt="${courses[i].course_name}" style="height: 200px; object-fit: cover;" onerror="this.onerror=null; this.src='path/to/default/image.jpg';">
                                     <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${courses[i].description}</p>
                                     <hr my-divider>
                                     <div class="mt-auto align-items-center">
