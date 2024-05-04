@@ -1,5 +1,7 @@
 <?php
 // controllers/Controller.php
+require_once __DIR__ . '/../includes/Database.php';
+require_once __DIR__ . '/CourseController.php';
 
 class Controller {
     public function home() {
@@ -16,6 +18,22 @@ class Controller {
 
     public function map() {
         $this->showMap();
+    }
+
+    public function details() {
+        // get course id from query string
+        $courseId = $_GET['id'];
+        $db = new Database();
+        $courseController = new CourseController($db->pdo);
+        // get course details from database
+        $course = $courseController->getCourseById($courseId);
+        // if course not found, show error page
+        if (!$course) {
+            $this->showPageNotFound();
+        } else {
+            // show course detail page
+            $this->showDetailPage($course);
+        }
     }
 
     public function admin() {
@@ -48,6 +66,10 @@ class Controller {
     
     private function showMap() {
         include 'views/map.php';
+    }
+
+    private function showDetailPage($course) {
+        include 'views/course_detail.php';
     }
 
     private function showAdminPage() {

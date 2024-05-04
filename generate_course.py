@@ -25,12 +25,12 @@ def generate_course():
 
     # image
     image_id = fake.random_int(min=1, max=1084)
-    url = "https://picsum.photos/id/" + str(image_id) + "/200/200"
+    url = "https://picsum.photos/id/" + str(image_id) + "/1600/900"
 
     return (course_name, course_price, description, url, date_added)
 
 # generate 200 courses
-for _ in range(10):
+for _ in range(200):
     course = generate_course()
     add_course = ("INSERT INTO courses "
                   "(course_name, course_price, description, url, date_added) "

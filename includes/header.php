@@ -27,7 +27,12 @@
             $pageTitle .= ' | Admin';
         } elseif ($uri === '/web-programming-lab/map') {
             $pageTitle .= ' | Map';
-        } else {
+        }
+        // if there's detail page, append the course name to the title
+        else if (strpos($uri, '/web-programming-lab/details') !== false) {
+            $pageTitle .= ' | Course Details';
+        }       
+        else {
             $pageTitle .= ' | Page Not Found';
         }
     ?>

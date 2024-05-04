@@ -30,6 +30,9 @@ switch ($request) {
     case '/map' :
         $controller->map();
         break;
+    case '/details' :
+        $controller->details();
+        break;
     case '/admin' :
         $controller->admin();
         break;

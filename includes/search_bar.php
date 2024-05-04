@@ -39,7 +39,7 @@ $(document).ready(function() {
                         suggestionsHtml = '<a class="dropdown-item">Nothing found</a>';
                     } else {
                         for (var i = 0; i < suggestions.length; i++) {
-                            suggestionsHtml += '<a class="dropdown-item" href="course.php?id=' + suggestions[i].id + '">' + suggestions[i].course_name + '</a>';
+                            suggestionsHtml += '<a class="dropdown-item" href="details?id=' + suggestions[i].id + '">' + suggestions[i].course_name + '</a>';
                         }
                     }
                     $('#search-suggestions').html(suggestionsHtml);
