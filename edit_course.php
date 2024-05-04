@@ -12,5 +12,6 @@ $courseId = $_POST['courseId'];
 $courseName = $_POST['courseName'];
 $courseDescription = $_POST['courseDescription'];
 $coursePrice = $_POST['coursePrice'];
+$url = $_POST['url'];
 
-$controller->editCourse($courseId, $courseName, $courseDescription, $coursePrice);
+$controller->editCourse($courseId, $courseName, $courseDescription, $coursePrice, $url);

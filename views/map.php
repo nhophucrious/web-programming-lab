@@ -3,7 +3,7 @@ require_once 'includes/header.php';
 ?>
 
 <div class="container p-4 m-4" style="min-height:100vh">
-    <div class="container-fluid">
+    <div class="container">
         <ul class="nav nav-tabs">
             <li class="active pr-2"><a data-toggle="tab" href="#map-address">Show map with address</a></li>
             <li><a data-toggle="tab" href="#map-coord">Show map with coordinates</a></li>

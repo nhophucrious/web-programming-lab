@@ -9,7 +9,7 @@ $controller = new CourseController($db->pdo);
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check if all fields are set
-    if (!isset($_POST['courseName']) || !isset($_POST['courseDescription']) || !isset($_POST['coursePrice'])) {
+    if (!isset($_POST['courseName']) || !isset($_POST['courseDescription']) || !isset($_POST['coursePrice']) || !isset($_POST['url'])) {
         http_response_code(400);
         echo json_encode(['error' => 'All fields are required']);
         exit();
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Create the course
     // dateAdded is the current date
     $dateAdded = date('Y-m-d H:i:s');
-    $controller->createCourse($_POST['courseName'], $_POST['courseDescription'], $_POST['coursePrice'], $dateAdded);
+    $controller->createCourse($_POST['courseName'], $_POST['courseDescription'], $_POST['coursePrice'], $_POST['url'], $dateAdded);
 
     // Respond with a success message
     http_response_code(200);

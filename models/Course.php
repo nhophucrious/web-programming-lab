@@ -7,15 +7,16 @@ class Course {
         $this->pdo = $pdo;
     }
 
-    public function createCourse($courseName, $courseDescription, $coursePrice, $dateAdded) {
+    public function createCourse($courseName, $courseDescription, $coursePrice, $url, $dateAdded) {
         // Prepare an SQL statement
-        $stmt = $this->pdo->prepare("INSERT INTO courses (course_name, description, course_price, date_added) VALUES (?, ?, ?, ?)");
+        $stmt = $this->pdo->prepare("INSERT INTO courses (course_name, description, course_price, url, date_added) VALUES (?, ?, ?, ?, ?)");
 
         // Bind parameters
         $stmt->bindParam(1, $courseName);
         $stmt->bindParam(2, $courseDescription);
         $stmt->bindParam(3, $coursePrice);
-        $stmt->bindParam(4, $dateAdded);
+        $stmt->bindParam(4, $url);
+        $stmt->bindParam(5, $dateAdded);
 
         // Execute the statement
         $stmt->execute();
@@ -68,15 +69,16 @@ class Course {
     }
 
     // method to edit a course
-    public function editCourse($courseId, $courseName, $courseDescription, $coursePrice) {
+    public function editCourse($courseId, $courseName, $courseDescription, $coursePrice, $url) {
         // Prepare an SQL statement
-        $stmt = $this->pdo->prepare("UPDATE courses SET course_name = ?, description = ?, course_price = ? WHERE id = ?");
+        $stmt = $this->pdo->prepare("UPDATE courses SET course_name = ?, description = ?, course_price = ?, url = ? WHERE id = ?");
 
         // Bind parameters
         $stmt->bindParam(1, $courseName);
         $stmt->bindParam(2, $courseDescription);
         $stmt->bindParam(3, $coursePrice);
-        $stmt->bindParam(4, $courseId);
+        $stmt->bindParam(4, $url);
+        $stmt->bindParam(5, $courseId);
 
         // Execute the statement
         $stmt->execute();

@@ -54,21 +54,26 @@ $(document).ready(function() {
                 var courses = data.courses;
                 totalCourses = data.total;
                 var html = '';
-                for (var i = 0; i < courses.length; i++) {
-                    html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
-                    html += '<div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">';
-                    html += '<div class="card-body d-flex flex-column">';
-                    html += '<h5 class="card-title" style="color: #ff5722 !important">' + courses[i].course_name + '</h5>';
-                    html += '<hr>'
-                    html += '<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">' + courses[i].description + '</p>';
-                    html += '<hr my-divider>'; // Add this line
-                    html += '<div class="mt-auto align-items-center">';
-                    html += '<p class="card-text d-inline-block mb-0">Price: $' + courses[i].course_price + '</p>';
-                    html += '<a href="details.php?id=' + courses[i].id + '" class="my-button-filled float-right">See Details</a>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
+                if (courses.length == 0) {
+                    html += '<div class="col-md-12 text-center">No courses found</div>';
+                } else {
+                    for (var i = 0; i < courses.length; i++) {
+                        html += `
+                        <div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">
+                            <div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title" style="color: #ff5722 !important">${courses[i].course_name}</h5>
+                                    <hr>
+                                    <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">${courses[i].description}</p>
+                                    <hr my-divider>
+                                    <div class="mt-auto align-items-center">
+                                        <p class="card-text d-inline-block mb-0">Price: $${courses[i].course_price}</p>
+                                        <a href="details.php?id=${courses[i].id}" class="my-button-filled float-right">See Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    }
                 }
                 $('#courses-container').html(html);
                 // Generate the pagination links
@@ -112,7 +117,12 @@ $(document).ready(function() {
                     paginationHtml += '<button class="page-link" data-page="' + totalPages + '">' + totalPages + '</button> ';
                 }
 
-                $('#pagination').html(paginationHtml);
+                if (totalCourses > 0) {
+                    $('#pagination').html(paginationHtml);
+                } else {
+                    $('#pagination').hide();
+                }
+
             }
         });
     }

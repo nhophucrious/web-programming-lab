@@ -21,12 +21,12 @@ class CourseController {
         return $this->courseModel->getCoursesByPage($pageNumber, $pageSize);
     }
 
-    public function createCourse($courseName, $courseDescription, $coursePrice, $dateAdded) {
-        $this->courseModel->createCourse($courseName, $courseDescription, $coursePrice, $dateAdded);
+    public function createCourse($courseName, $courseDescription, $coursePrice, $url, $dateAdded) {
+        $this->courseModel->createCourse($courseName, $courseDescription, $coursePrice, $url, $dateAdded);
     }
 
-    public function editCourse($courseId, $courseName, $courseDescription, $coursePrice) {
-        $this->courseModel->editCourse($courseId, $courseName, $courseDescription, $coursePrice);
+    public function editCourse($courseId, $courseName, $courseDescription, $coursePrice, $url) {
+        $this->courseModel->editCourse($courseId, $courseName, $courseDescription, $coursePrice, $url);
     }
 
     public function deleteCourse($courseId) {

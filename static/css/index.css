@@ -67,10 +67,13 @@ html, body {
 }
 
 .my-separator {
-    width: 30%;
+    width: 10%;
     height: 2px;
     background-color: orangered;
-    margin: 1em 0;
+    margin: auto; /* centers the element horizontally */
+    position: relative;
+    top: 50%; /* moves the top edge to the center of the container */
+    transform: translateY(-50%); /* shifts the element up by half its height */
 }
 
 .about-hero {

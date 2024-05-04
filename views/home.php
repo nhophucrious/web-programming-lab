@@ -25,20 +25,28 @@
 
 <div id="explore" class="container my-5">
     <h2 class="text-center">Latest Courses</h2>
+    <div class="my-separator mb-5"></div>
     <div class="row">
     </div>
 </div>
 
 <div class="container my-5">
-    <h2 class="text-center">Fetch text file with AJAX</h2>
-    <button class="my-button-filled" type="button" onclick="loadDoc()">Change Content</button>
-    <button class="my-button" type="button" onclick="unloadDoc()">Clear</button>
-    <div class="row" id="fetch-ajax">
+    <h2 class="text-center">Fetch text file with AJAX</h2>    
+    <div class="my-separator mb-5"></div>
+    <p class="text-center">Click the button below to fetch the content of a text file using AJAX</p>
+    <div class="row align-items-center justify-content-center">
+        <button class="my-button-filled" type="button" onclick="loadDoc()">Change Content</button>
+        <br>
+        <button class="my-button ml-2" type="button" onclick="unloadDoc()">Clear</button>
+    </div>
+    <div class="row align-items-center justify-content-center" id="fetch-ajax">
+        The content of the text file will be displayed here...
     </div>
 </div>
 
 <div class="container my-5">
     <h2 class="text-center">Country list drop-down selection</h2>
+    <div class="my-separator"></div>
     <div class=country-select>
         <div class="country-container">
             <select id="countries">
@@ -74,22 +82,27 @@
                 data = JSON.parse(data);
                 var courses = data.courses;
                 var html = '';
-                for (var i = 0; i < courses.length; i++) {
-                    html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
-                    html += '<div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">';
-                    html += '<div class="card-body d-flex flex-column">';
-                    html += '<h5 class="card-title" style="color: #ff5722 !important">' + courses[i].course_name + '</h5>';
-                    html += '<hr>'
-                    html += '<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">' + courses[i].description + '</p>';
-                    html += '<hr my-divider>'; // Add this line
-                    html += '<div class="mt-auto align-items-center">';
-                    html += '<p class="card-text d-inline-block mb-0">Price: $' + courses[i].course_price + '</p>';
-                    html += '<a href="details.php?id=' + courses[i].id + '" class="my-button-filled float-right">See Details</a>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += '</div>';
+                if (courses.length == 0) {
+                    html += '<div class="col-md-12 text-center">No courses found</div>';
+                } else { 
+                    for (var i = 0; i < courses.length; i++) {
+                        html += '<div class="col-md-4 d-flex align-items-stretch" style="width: 300px;">';
+                        html += '<div class="card mb-4" style="border: 3px solid #ff5722; width: 100%; border-radius: 10px !important;">';
+                        html += '<div class="card-body d-flex flex-column">';
+                        html += '<h5 class="card-title" style="color: #ff5722 !important">' + courses[i].course_name + '</h5>';
+                        html += '<hr>'
+                        html += '<p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">' + courses[i].description + '</p>';
+                        html += '<hr my-divider>'; // Add this line
+                        html += '<div class="mt-auto align-items-center">';
+                        html += '<p class="card-text d-inline-block mb-0">Price: $' + courses[i].course_price + '</p>';
+                        html += '<a href="details.php?id=' + courses[i].id + '" class="my-button-filled float-right">See Details</a>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                        html += '</div>';
+                    }
                 }
+                
                 $('#explore .row').html(html);
             }
         });
@@ -105,7 +118,7 @@ function loadDoc() {
     xhttp.send();
 }
 function unloadDoc() {
-    document.getElementById("fetch-ajax").innerHTML = "";
+    document.getElementById("fetch-ajax").innerHTML = "The content of the text file will be displayed here...";
 }
 </script>
 

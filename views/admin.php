@@ -37,6 +37,11 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
                         <label for="coursePrice">Course Price:</label>
                         <input type="number" class="form-control" id="coursePrice" name="coursePrice" required>
                     </div>
+                    <!-- url -->
+                    <div class="form-group">
+                        <label for="url">Image URL:</label>
+                        <input type="text" class="form-control" id="url" name="url" required>
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Add Course</button>
                 </form>
@@ -57,6 +62,7 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
                             <th>Course Name</th>
                             <th>Course Description</th>
                             <th>Course Price</th>
+                            <th>URL</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -92,6 +98,11 @@ if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
                         <label for="edit-coursePrice">Course Price:</label>
                         <input type="number" class="form-control" id="edit-coursePrice" name="edit-coursePrice" required>
                     </div>
+                    <!-- url -->
+                    <div class="form-group">
+                        <label for="edit-url">Image URL:</label>
+                        <input type="text" class="form-control" id="edit-url" name="edit-url" required>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -116,6 +127,8 @@ jQuery(document).ready(function(){
             data: jQuery(this).serialize(),
             success: function(response) {
                 jQuery("#add-course-status").html("<div class='alert alert-success'>Course added successfully!</div>");
+                // load the courses
+                loadCourses();
             },
             error: function() {
                 jQuery("#add-course-status").html("<div class='alert alert-danger'>There was an error adding the course.</div>");
@@ -147,6 +160,7 @@ $(document).ready(function() {
                         '<td>' + course.course_name + '</td>' +
                         '<td>' + course.description + '</td>' +
                         '<td>' + course.course_price + '</td>' +
+                        '<td>' + course.url + '</td>' +
                         '<td>' +
                         "<button class='btn btn-primary edit-button' data-id='" + course.id + "'>Edit</button>" +
                         "<button class='btn btn-danger delete-button' data-id='" + course.id + "'>Delete</button>" +
@@ -186,6 +200,7 @@ $(document).ready(function() {
                 $('#edit-courseName').val(course.course_name);
                 $('#edit-courseDescription').val(course.description);
                 $('#edit-coursePrice').val(course.course_price);
+                $('#edit-url').val(course.url);
                 // Open the modal
                 $('#edit-course-modal').modal('show');
             }
@@ -202,7 +217,8 @@ $(document).ready(function() {
                     courseId: courseId,
                     courseName: $('#edit-courseName').val(),
                     courseDescription: $('#edit-courseDescription').val(),
-                    coursePrice: $('#edit-coursePrice').val()
+                    coursePrice: $('#edit-coursePrice').val(),
+                    url: $('#edit-url').val()
                 },
                 success: function() {
                     // Close the modal and reload the courses
