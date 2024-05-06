@@ -3,7 +3,7 @@ require_once 'includes/header.php';
 require_once 'includes/Database.php';
 require_once 'controllers/CourseController.php';
 // Check if the user is logged in and is an admin
-if (!isset($_SESSION['username']) || $_SESSION['level'] != 0) {
+if (!isset($_SESSION['username']) || $_SESSION['level'] != 1) {
     header('Location: /web-programming-lab/');
     exit;
 }
