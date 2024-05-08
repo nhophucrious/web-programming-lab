@@ -104,7 +104,7 @@
                     <li class="nav-item">
                         <span class="nav-link"><?= $_SESSION['username'] ?></span>
                     </li>
-                    <?php if ($level == 0): ?>
+                    <?php if ($level == 1): ?>
                         <li class="nav-item <?= $uri === '/web-programming-lab/admin' ? 'active' : '' ?>">
                             <a class="nav-link" href="/web-programming-lab/admin">Admin</a>
                         </li>

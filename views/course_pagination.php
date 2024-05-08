@@ -78,7 +78,7 @@ $(document).ready(function() {
                                     <hr my-divider>
                                     <div class="mt-auto align-items-center">
                                         <p class="card-text d-inline-block mb-0">Price: $${courses[i].course_price}</p>
-                                        <a href="details.php?id=${courses[i].id}" class="my-button-filled float-right">See Details</a>
+                                        <a href="details?id=${courses[i].id}" class="my-button-filled float-right">See Details</a>
                                     </div>
                                 </div>
                             </div>
