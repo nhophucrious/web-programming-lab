@@ -19,6 +19,15 @@ require_once 'includes/header.php';
     <h1>
         HackCMUT Courses (with pagination)
     </h1>
+    <div class="form-group">
+        <label for="pageSize">Courses per page:</label>
+        <select id="pageSize" class="form-control" style="width: auto;">
+            <option value="5">5</option>
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+        </select>
+    </div>
     <p id="course-info"></p>
     <div class="row" id="courses-container">
         <!-- Courses will be loaded here -->
@@ -39,7 +48,7 @@ require_once 'includes/footer.php';
 <script>
 $(document).ready(function() {
     var pageNumber = 1;
-    var pageSize = 10;
+    var pageSize = $('#pageSize').val();
     var totalCourses = 0;
     function loadCourses() {
         $.ajax({
@@ -127,6 +136,11 @@ $(document).ready(function() {
             }
         });
     }
+    // Add an event listener to the pageSize dropdown
+    $('#pageSize').change(function() {
+        pageSize = $(this).val();
+        loadCourses();
+    });
     loadCourses(); // Load the first page of courses
     // Add an event listener to the 'next' button
     $('#next').click(function() {
